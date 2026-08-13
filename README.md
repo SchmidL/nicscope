@@ -33,6 +33,8 @@ measurement system.
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
+![the ports screen](docs/screenshot-ports.png)
+
 `enp1s0` passes every functional check there. Its verdict stays `unkn` because
 its firmware version is not in your known-good table yet, and nicscope will not
 call an unverified firmware a pass. Add the version once you trust it, and the
