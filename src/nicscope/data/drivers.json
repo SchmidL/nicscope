@@ -1,0 +1,36 @@
+{
+  "_comment": [
+    "Transmit-scheduling offload by driver. This table is a hint, not a measurement.",
+    "nicscope will not dry-run a `tc qdisc replace` to find out, because that changes",
+    "the queue discipline of a live interface, and section 7 of the specification",
+    "forbids a write. When `tc qdisc show` reports an offload as configured, the",
+    "observation replaces the table entry.",
+    "Values: yes | no | unknown. Add your own rows and send a pull request."
+  ],
+
+  "igc": {
+    "etf_offload": "yes",
+    "taprio_offload": "yes",
+    "note": "Intel I225 and I226. Launch time and the 802.1Qbv gate schedule are both offloaded."
+  },
+  "igb": {
+    "etf_offload": "yes",
+    "taprio_offload": "no",
+    "note": "Intel I210 has a launch-time engine. Confirm on your own silicon before you rely on it."
+  },
+  "stmmac": {
+    "etf_offload": "yes",
+    "taprio_offload": "yes",
+    "note": "Synopsys DesignWare, used on many embedded SoC ports."
+  },
+  "ice": {
+    "etf_offload": "unknown",
+    "taprio_offload": "unknown",
+    "note": "Intel E810. Capability depends on the DDP package and the firmware. Verify."
+  },
+  "i40e": { "etf_offload": "no", "taprio_offload": "no", "note": "Intel X710 and XL710." },
+  "ixgbe": { "etf_offload": "no", "taprio_offload": "no", "note": "Intel 82599 and X540." },
+  "e1000e": { "etf_offload": "no", "taprio_offload": "no", "note": "Intel I219 and older." },
+  "hv_netvsc": { "etf_offload": "no", "taprio_offload": "no", "note": "Hyper-V virtual NIC. No hardware behind it." },
+  "virtio_net": { "etf_offload": "no", "taprio_offload": "no", "note": "Virtual NIC. No hardware behind it." }
+}

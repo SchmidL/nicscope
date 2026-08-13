@@ -1,0 +1,599 @@
+{
+ "commands": {
+  "dmidecode -t 41": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "# dmidecode 3.5\nGetting SMBIOS data from sysfs.\nSMBIOS 3.3.0 present.\n\nHandle 0x0029, DMI type 41, 11 bytes\nOnboard Device\n\tReference Designation: Onboard LAN 1\n\tType: Ethernet\n\tStatus: Enabled\n\tType Instance: 1\n\tBus Address: 0000:00:1f.6\n\nHandle 0x002a, DMI type 41, 11 bytes\nOnboard Device\n\tReference Designation: Onboard LAN 2\n\tType: Ethernet\n\tStatus: Enabled\n\tType Instance: 2\n\tBus Address: 0000:01:00.0\n\n"
+  },
+  "ethtool --json -k eno1": {
+   "failure": "unsupported",
+   "rc": 1,
+   "stderr": "ethtool: bad command line argument(s)\n",
+   "stdout": ""
+  },
+  "ethtool --show-priv-flags eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Private flags for eno1:\nlegacy-rx: off\n"
+  },
+  "ethtool --show-priv-flags enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Private flags for enp1s0:\nlegacy-rx: off\n"
+  },
+  "ethtool --show-priv-flags enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Private flags for enp2s0:\nlegacy-rx: off\n"
+  },
+  "ethtool --show-priv-flags enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Private flags for enp3s0:\nlegacy-rx: off\n"
+  },
+  "ethtool --version": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "ethtool version 6.1\n"
+  },
+  "ethtool -P eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Permanent address: aa:bb:cc:00:00:01\n"
+  },
+  "ethtool -P enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Permanent address: aa:bb:cc:00:01:00\n"
+  },
+  "ethtool -P enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Permanent address: aa:bb:cc:00:02:00\n"
+  },
+  "ethtool -P enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Permanent address: aa:bb:cc:00:03:00\n"
+  },
+  "ethtool -T eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Time stamping parameters for eno1:\nCapabilities:\n\tsoftware-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)\n\tsoftware-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)\n\tsoftware-system-clock (SOF_TIMESTAMPING_SOFTWARE)\nPTP Hardware Clock: none\nHardware Transmit Timestamp Modes: none\nHardware Receive Filter Modes: none\n"
+  },
+  "ethtool -T enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Time stamping parameters for enp1s0:\nCapabilities:\n\thardware-transmit     (SOF_TIMESTAMPING_TX_HARDWARE)\n\tsoftware-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)\n\thardware-receive      (SOF_TIMESTAMPING_RX_HARDWARE)\n\tsoftware-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)\n\tsoftware-system-clock (SOF_TIMESTAMPING_SOFTWARE)\n\thardware-raw-clock    (SOF_TIMESTAMPING_RAW_HARDWARE)\nPTP Hardware Clock: 0\nHardware Transmit Timestamp Modes:\n\toff                   (HWTSTAMP_TX_OFF)\n\ton                    (HWTSTAMP_TX_ON)\n\tone-step-sync         (HWTSTAMP_TX_ONESTEP_SYNC)\nHardware Receive Filter Modes:\n\tnone                  (HWTSTAMP_FILTER_NONE)\n\tall                   (HWTSTAMP_FILTER_ALL)\n"
+  },
+  "ethtool -T enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Time stamping parameters for enp2s0:\nCapabilities:\n\thardware-transmit     (SOF_TIMESTAMPING_TX_HARDWARE)\n\tsoftware-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)\n\thardware-receive      (SOF_TIMESTAMPING_RX_HARDWARE)\n\tsoftware-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)\n\tsoftware-system-clock (SOF_TIMESTAMPING_SOFTWARE)\n\thardware-raw-clock    (SOF_TIMESTAMPING_RAW_HARDWARE)\nPTP Hardware Clock: 1\nHardware Transmit Timestamp Modes:\n\toff                   (HWTSTAMP_TX_OFF)\n\ton                    (HWTSTAMP_TX_ON)\n\tone-step-sync         (HWTSTAMP_TX_ONESTEP_SYNC)\nHardware Receive Filter Modes:\n\tnone                  (HWTSTAMP_FILTER_NONE)\n\tall                   (HWTSTAMP_FILTER_ALL)\n"
+  },
+  "ethtool -T enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Time stamping parameters for enp3s0:\nCapabilities:\n\thardware-transmit     (SOF_TIMESTAMPING_TX_HARDWARE)\n\tsoftware-transmit     (SOF_TIMESTAMPING_TX_SOFTWARE)\n\thardware-receive      (SOF_TIMESTAMPING_RX_HARDWARE)\n\tsoftware-receive      (SOF_TIMESTAMPING_RX_SOFTWARE)\n\tsoftware-system-clock (SOF_TIMESTAMPING_SOFTWARE)\n\thardware-raw-clock    (SOF_TIMESTAMPING_RAW_HARDWARE)\nPTP Hardware Clock: 2\nHardware Transmit Timestamp Modes:\n\toff                   (HWTSTAMP_TX_OFF)\n\ton                    (HWTSTAMP_TX_ON)\nHardware Receive Filter Modes:\n\tnone                  (HWTSTAMP_FILTER_NONE)\n\tall                   (HWTSTAMP_FILTER_ALL)\n"
+  },
+  "ethtool -c eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Coalesce parameters for eno1:\nAdaptive RX: off  TX: off\nrx-usecs: 3\ntx-usecs: 0\n"
+  },
+  "ethtool -c enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Coalesce parameters for enp1s0:\nAdaptive RX: off  TX: off\nrx-usecs: 3\ntx-usecs: 0\n"
+  },
+  "ethtool -c enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Coalesce parameters for enp2s0:\nAdaptive RX: off  TX: off\nrx-usecs: 3\ntx-usecs: 0\n"
+  },
+  "ethtool -c enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Coalesce parameters for enp3s0:\nAdaptive RX: off  TX: off\nrx-usecs: 3\ntx-usecs: 0\n"
+  },
+  "ethtool -g eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Ring parameters for eno1:\nPre-set maximums:\nRX:\t\t4096\nRX Mini:\tn/a\nRX Jumbo:\tn/a\nTX:\t\t4096\nCurrent hardware settings:\nRX:\t\t512\nTX:\t\t512\n"
+  },
+  "ethtool -g enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Ring parameters for enp1s0:\nPre-set maximums:\nRX:\t\t4096\nRX Mini:\tn/a\nRX Jumbo:\tn/a\nTX:\t\t4096\nCurrent hardware settings:\nRX:\t\t512\nTX:\t\t512\n"
+  },
+  "ethtool -g enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Ring parameters for enp2s0:\nPre-set maximums:\nRX:\t\t4096\nRX Mini:\tn/a\nRX Jumbo:\tn/a\nTX:\t\t4096\nCurrent hardware settings:\nRX:\t\t512\nTX:\t\t512\n"
+  },
+  "ethtool -g enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Ring parameters for enp3s0:\nPre-set maximums:\nRX:\t\t4096\nRX Mini:\tn/a\nRX Jumbo:\tn/a\nTX:\t\t4096\nCurrent hardware settings:\nRX:\t\t512\nTX:\t\t512\n"
+  },
+  "ethtool -i eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "driver: e1000e\nversion: 6.8.0-40-generic\nfirmware-version: 0.6-4\nexpansion-rom-version: \nbus-info: 0000:00:1f.6\nsupports-statistics: yes\nsupports-test: yes\nsupports-eeprom-access: yes\nsupports-register-dump: yes\nsupports-priv-flags: yes\n"
+  },
+  "ethtool -i enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "driver: igc\nversion: 6.8.0-40-generic\nfirmware-version: 2017:888d\nexpansion-rom-version: \nbus-info: 0000:01:00.0\nsupports-statistics: yes\nsupports-test: yes\nsupports-eeprom-access: yes\nsupports-register-dump: yes\nsupports-priv-flags: yes\n"
+  },
+  "ethtool -i enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "driver: igc\nversion: 6.8.0-40-generic\nfirmware-version: 2017:888d\nexpansion-rom-version: \nbus-info: 0000:02:00.0\nsupports-statistics: yes\nsupports-test: yes\nsupports-eeprom-access: yes\nsupports-register-dump: yes\nsupports-priv-flags: yes\n"
+  },
+  "ethtool -i enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "driver: igb\nversion: 6.8.0-40-generic\nfirmware-version: 3.25, 0x800005c0\nexpansion-rom-version: \nbus-info: 0000:04:00.0\nsupports-statistics: yes\nsupports-test: yes\nsupports-eeprom-access: yes\nsupports-register-dump: yes\nsupports-priv-flags: yes\n"
+  },
+  "ethtool -k eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Features for eno1:\nrx-checksumming: on\ntx-checksumming: on\n\ttx-checksum-ipv4: on\nscatter-gather: on\ntcp-segmentation-offload: on\nrx-vlan-offload: on [fixed]\n"
+  },
+  "ethtool -k enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Features for enp1s0:\nrx-checksumming: on\ntx-checksumming: on\n\ttx-checksum-ipv4: on\nscatter-gather: on\ntcp-segmentation-offload: on\nrx-vlan-offload: on [fixed]\n"
+  },
+  "ethtool -k enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Features for enp2s0:\nrx-checksumming: on\ntx-checksumming: on\n\ttx-checksum-ipv4: on\nscatter-gather: on\ntcp-segmentation-offload: on\nrx-vlan-offload: on [fixed]\n"
+  },
+  "ethtool -k enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Features for enp3s0:\nrx-checksumming: on\ntx-checksumming: on\n\ttx-checksum-ipv4: on\nscatter-gather: on\ntcp-segmentation-offload: on\nrx-vlan-offload: on [fixed]\n"
+  },
+  "ethtool -l eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Channel parameters for eno1:\nPre-set maximums:\nCombined:\t4\nCurrent hardware settings:\nCombined:\t4\n"
+  },
+  "ethtool -l enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Channel parameters for enp1s0:\nPre-set maximums:\nCombined:\t4\nCurrent hardware settings:\nCombined:\t4\n"
+  },
+  "ethtool -l enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Channel parameters for enp2s0:\nPre-set maximums:\nCombined:\t4\nCurrent hardware settings:\nCombined:\t4\n"
+  },
+  "ethtool -l enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Channel parameters for enp3s0:\nPre-set maximums:\nCombined:\t4\nCurrent hardware settings:\nCombined:\t4\n"
+  },
+  "ethtool -m eno1": {
+   "failure": "unsupported",
+   "rc": 1,
+   "stderr": "netlink error: Operation not supported\n",
+   "stdout": ""
+  },
+  "ethtool -m enp1s0": {
+   "failure": "unsupported",
+   "rc": 1,
+   "stderr": "netlink error: Operation not supported\n",
+   "stdout": ""
+  },
+  "ethtool -m enp2s0": {
+   "failure": "unsupported",
+   "rc": 1,
+   "stderr": "netlink error: Operation not supported\n",
+   "stdout": ""
+  },
+  "ethtool -m enp3s0": {
+   "failure": "unsupported",
+   "rc": 1,
+   "stderr": "netlink error: Operation not supported\n",
+   "stdout": ""
+  },
+  "ethtool eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Settings for eno1:\n\tSupported ports: [ TP ]\n\tSupported link modes:   10baseT/Half 10baseT/Full\n\t                        100baseT/Half 100baseT/Full\n\t                        1000baseT/Full\n\tSupports auto-negotiation: Yes\n\tSpeed: 1000Mb/s\n\tDuplex: Full\n\tPort: Twisted Pair\n\tAuto-negotiation: on\n\tLink detected: yes\n"
+  },
+  "ethtool enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Settings for enp1s0:\n\tSupported ports: [ TP ]\n\tSupported link modes:   10baseT/Half 10baseT/Full\n\t                        100baseT/Half 100baseT/Full\n\t                        1000baseT/Full\n\tSupports auto-negotiation: Yes\n\tSpeed: 1000Mb/s\n\tDuplex: Full\n\tPort: Twisted Pair\n\tAuto-negotiation: on\n\tLink detected: yes\n"
+  },
+  "ethtool enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Settings for enp2s0:\n\tSupported ports: [ TP ]\n\tSupported link modes:   10baseT/Half 10baseT/Full\n\t                        100baseT/Half 100baseT/Full\n\t                        1000baseT/Full\n\tSupports auto-negotiation: Yes\n\tSpeed: Unknown!\n\tDuplex: Unknown! (255)\n\tPort: Twisted Pair\n\tAuto-negotiation: on\n\tLink detected: no\n"
+  },
+  "ethtool enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "Settings for enp3s0:\n\tSupported ports: [ TP ]\n\tSupported link modes:   10baseT/Half 10baseT/Full\n\t                        100baseT/Half 100baseT/Full\n\t                        1000baseT/Full\n\tSupports auto-negotiation: Yes\n\tSpeed: 1000Mb/s\n\tDuplex: Full\n\tPort: Twisted Pair\n\tAuto-negotiation: on\n\tLink detected: yes\n"
+  },
+  "ip -d -j link show eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "[{\"ifindex\": 5, \"ifname\": \"eno1\", \"operstate\": \"UP\", \"mtu\": 1500, \"address\": \"aa:bb:cc:00:00:01\", \"link_type\": \"ether\", \"parentbus\": \"pci\", \"parentdev\": \"0000:00:1f.6\"}]"
+  },
+  "ip -d -j link show enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "[{\"ifindex\": 2, \"ifname\": \"enp1s0\", \"operstate\": \"UP\", \"mtu\": 1500, \"address\": \"aa:bb:cc:00:01:00\", \"link_type\": \"ether\", \"parentbus\": \"pci\", \"parentdev\": \"0000:01:00.0\"}]"
+  },
+  "ip -d -j link show enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "[{\"ifindex\": 3, \"ifname\": \"enp2s0\", \"operstate\": \"DOWN\", \"mtu\": 1500, \"address\": \"aa:bb:cc:00:02:00\", \"link_type\": \"ether\", \"parentbus\": \"pci\", \"parentdev\": \"0000:02:00.0\"}]"
+  },
+  "ip -d -j link show enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "[{\"ifindex\": 4, \"ifname\": \"enp3s0\", \"operstate\": \"UP\", \"mtu\": 1500, \"address\": \"aa:bb:cc:00:03:00\", \"link_type\": \"ether\", \"parentbus\": \"pci\", \"parentdev\": \"0000:04:00.0\"}]"
+  },
+  "lspci -D -vvv": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "0000:00:1c.4 PCI bridge: Intel Corporation Device 7ab4 (rev 11) (prog-if 00 [Normal decode])\n\tCapabilities: [40] Express (v2) Root Port (Slot+), MSI 00\n\t\tLnkCap:\tPort #5, Speed 8GT/s, Width x4, ASPM L1, Exit Latency L1 <16us\n\t\tLnkSta:\tSpeed 5GT/s (downgraded), Width x1 (downgraded)\n\tCapabilities: [150 v1] Precision Time Measurement\n\t\tPTMCap: Requester:- Responder:+ Root:+\n\t\tPTMClockGranularity: 4ns\n\t\tPTMControl: Enabled:+ RootSelected:+\n\tKernel driver in use: pcieport\n\n0000:00:1c.5 PCI bridge: Intel Corporation Device 7ab5 (rev 11) (prog-if 00 [Normal decode])\n\tCapabilities: [40] Express (v2) Root Port (Slot+), MSI 00\n\t\tLnkCap:\tPort #6, Speed 8GT/s, Width x4, ASPM L1, Exit Latency L1 <16us\n\t\tLnkSta:\tSpeed 5GT/s (downgraded), Width x1 (downgraded)\n\tKernel driver in use: pcieport\n\n0000:00:1d.0 PCI bridge: Intel Corporation Device 7ab0 (rev 11) (prog-if 00 [Normal decode])\n\tCapabilities: [40] Express (v2) Root Port (Slot+), MSI 00\n\t\tLnkCap:\tPort #9, Speed 8GT/s, Width x4, ASPM L1, Exit Latency L1 <16us\n\t\tLnkSta:\tSpeed 2.5GT/s (downgraded), Width x1 (downgraded)\n\tKernel driver in use: pcieport\n\n0000:00:1f.6 Ethernet controller: Intel Corporation Ethernet Connection (7) I219-LM (rev 11)\n\tSubsystem: Intel Corporation Device 0000\n\tKernel driver in use: e1000e\n\n0000:01:00.0 Ethernet controller: Intel Corporation Ethernet Controller I226-LM (rev 04)\n\tSubsystem: Intel Corporation Device 0000\n\tCapabilities: [a0] Express (v2) Endpoint, MSI 00\n\t\tLnkCap:\tPort #0, Speed 5GT/s, Width x1, ASPM L1, Exit Latency L1 <4us\n\t\tLnkSta:\tSpeed 5GT/s (ok), Width x1 (ok)\n\tCapabilities: [1f0 v1] Precision Time Measurement\n\t\tPTMCap: Requester:+ Responder:- Root:-\n\t\tPTMClockGranularity: 4ns\n\t\tPTMControl: Enabled:+ RootSelected:-\n\tKernel driver in use: igc\n\n0000:02:00.0 Ethernet controller: Intel Corporation Ethernet Controller I226-V (rev 04)\n\tSubsystem: Intel Corporation Device 0000\n\tCapabilities: [a0] Express (v2) Endpoint, MSI 00\n\t\tLnkCap:\tPort #0, Speed 5GT/s, Width x1, ASPM L1, Exit Latency L1 <4us\n\t\tLnkSta:\tSpeed 5GT/s (ok), Width x1 (ok)\n\tCapabilities: [1f0 v1] Precision Time Measurement\n\t\tPTMCap: Requester:+ Responder:- Root:-\n\t\tPTMClockGranularity: 4ns\n\t\tPTMControl: Enabled:- RootSelected:-\n\tKernel driver in use: igc\n\n0000:03:00.0 PCI bridge: ASMedia Technology Inc. ASM1182e PCIe Switch Port (prog-if 00 [Normal decode])\n\tCapabilities: [80] Express (v2) Upstream Port, MSI 00\n\t\tLnkCap:\tPort #0, Speed 5GT/s, Width x2, ASPM L1\n\t\tLnkSta:\tSpeed 2.5GT/s (downgraded), Width x1 (downgraded)\n\tKernel driver in use: pcieport\n\n0000:04:00.0 Ethernet controller: Intel Corporation I210 Gigabit Network Connection (rev 03)\n\tSubsystem: Intel Corporation Device 0000\n\tCapabilities: [a0] Express (v2) Endpoint, MSI 00\n\t\tLnkCap:\tPort #0, Speed 2.5GT/s, Width x4, ASPM L1, Exit Latency L1 <4us\n\t\tLnkSta:\tSpeed 2.5GT/s (ok), Width x1 (downgraded)\n\tKernel driver in use: igb\n"
+  },
+  "tc qdisc show dev eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "qdisc mq 0: root \nqdisc pfifo_fast 0: parent :4 bands 3\n"
+  },
+  "tc qdisc show dev enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "qdisc mq 0: root \nqdisc pfifo_fast 0: parent :4 bands 3\n"
+  },
+  "tc qdisc show dev enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "qdisc mq 0: root \nqdisc pfifo_fast 0: parent :4 bands 3\n"
+  },
+  "tc qdisc show dev enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "qdisc mq 0: root \nqdisc pfifo_fast 0: parent :4 bands 3\n"
+  },
+  "udevadm info /sys/class/net/eno1": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "P: /devices/pci0000:00/eno1\nE: INTERFACE=eno1\nE: ID_NET_NAME_PATH=enp3s0\nE: ID_NET_NAME_MAC=enxaabbcc000001\nE: ID_NET_DRIVER=e1000e\nE: ID_PATH=pci-0000:00:1f.6\n"
+  },
+  "udevadm info /sys/class/net/enp1s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "P: /devices/pci0000:00/enp1s0\nE: INTERFACE=enp1s0\nE: ID_NET_NAME_PATH=enp0s0\nE: ID_NET_NAME_MAC=enxaabbcc000100\nE: ID_NET_DRIVER=igc\nE: ID_PATH=pci-0000:01:00.0\n"
+  },
+  "udevadm info /sys/class/net/enp2s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "P: /devices/pci0000:00/enp2s0\nE: INTERFACE=enp2s0\nE: ID_NET_NAME_PATH=enp1s0\nE: ID_NET_NAME_MAC=enxaabbcc000200\nE: ID_NET_DRIVER=igc\nE: ID_PATH=pci-0000:02:00.0\n"
+  },
+  "udevadm info /sys/class/net/enp3s0": {
+   "failure": "none",
+   "rc": 0,
+   "stderr": "",
+   "stdout": "P: /devices/pci0000:00/enp3s0\nE: INTERFACE=enp3s0\nE: ID_NET_NAME_PATH=enp2s0\nE: ID_NET_NAME_MAC=enxaabbcc000300\nE: ID_NET_DRIVER=igb\nE: ID_PATH=pci-0000:04:00.0\n"
+  }
+ },
+ "fs": {
+  "exists:/sys/class/net/eno1/device": true,
+  "exists:/sys/class/net/enp1s0/device": true,
+  "exists:/sys/class/net/enp2s0/device": true,
+  "exists:/sys/class/net/enp3s0/device": true,
+  "exists:/sys/class/net/lo/device": false,
+  "exists:/sys/class/ptp/ptp0": true,
+  "exists:/sys/class/ptp/ptp1": true,
+  "exists:/sys/class/ptp/ptp2": true,
+  "exists:/usr/share/hwdata/pci.ids": false,
+  "exists:/usr/share/misc/pci.ids": true,
+  "ioctl:/dev/ptp0": {
+   "caps": {
+    "adjust_phase": 0,
+    "cross_timestamping": 1,
+    "max_adj": 62499999,
+    "max_phase_adj": 0,
+    "n_alarm": 0,
+    "n_ext_ts": 1,
+    "n_per_out": 2,
+    "n_pins": 4,
+    "pps": 1
+   },
+   "cross_timestamp": "precise",
+   "device": "/dev/ptp0",
+   "error": null,
+   "pins": [
+    {
+     "chan": 0,
+     "func": 1,
+     "func_name": "external timestamp",
+     "index": 0,
+     "name": "SDP0"
+    },
+    {
+     "chan": 0,
+     "func": 2,
+     "func_name": "periodic output",
+     "index": 1,
+     "name": "SDP1"
+    },
+    {
+     "chan": 0,
+     "func": 0,
+     "func_name": "none",
+     "index": 2,
+     "name": "SDP2"
+    },
+    {
+     "chan": 0,
+     "func": 0,
+     "func_name": "none",
+     "index": 3,
+     "name": "SDP3"
+    }
+   ],
+   "precise_offset_ns": -1372
+  },
+  "ioctl:/dev/ptp1": {
+   "caps": {
+    "adjust_phase": 0,
+    "cross_timestamping": 1,
+    "max_adj": 62499999,
+    "max_phase_adj": 0,
+    "n_alarm": 0,
+    "n_ext_ts": 1,
+    "n_per_out": 2,
+    "n_pins": 4,
+    "pps": 1
+   },
+   "cross_timestamp": "claimed",
+   "device": "/dev/ptp1",
+   "error": null,
+   "pins": null,
+   "precise_offset_ns": null
+  },
+  "ioctl:/dev/ptp2": {
+   "caps": {
+    "adjust_phase": 0,
+    "cross_timestamping": 0,
+    "max_adj": 62499999,
+    "max_phase_adj": 0,
+    "n_alarm": 0,
+    "n_ext_ts": 1,
+    "n_per_out": 1,
+    "n_pins": 2,
+    "pps": 1
+   },
+   "cross_timestamp": "extended",
+   "device": "/dev/ptp2",
+   "error": null,
+   "pins": null,
+   "precise_offset_ns": null
+  },
+  "list:/dev": [
+   "null",
+   "ptp0",
+   "ptp1",
+   "ptp2",
+   "ptp_grandmaster",
+   "zero"
+  ],
+  "list:/sys/class/net": [
+   "eno1",
+   "enp1s0",
+   "enp2s0",
+   "enp3s0",
+   "lo"
+  ],
+  "list:/sys/class/ptp/ptp0/pins": [
+   "SDP0",
+   "SDP1",
+   "SDP2",
+   "SDP3"
+  ],
+  "list:/sys/class/ptp/ptp1/pins": [
+   "SDP0",
+   "SDP1",
+   "SDP2",
+   "SDP3"
+  ],
+  "list:/sys/class/ptp/ptp2/pins": [
+   "SDP0",
+   "SDP1"
+  ],
+  "list:/sys/devices/system/node": [
+   "node0"
+  ],
+  "read:/boot/config-6.8.0-40-generic": "CONFIG_PCIE_PTM=y\nCONFIG_PTP_1588_CLOCK=y\n",
+  "read:/etc/os-release": "PRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nID=ubuntu\n",
+  "read:/proc/sys/kernel/hostname": "meas01",
+  "read:/proc/sys/kernel/osrelease": "6.8.0-40-generic",
+  "read:/sys/bus/pci/devices/0000:00:1c.4/ptm_enabled": "1",
+  "read:/sys/bus/pci/devices/0000:01:00.0/ptm_enabled": "1",
+  "read:/sys/bus/pci/devices/0000:02:00.0/ptm_enabled": "0",
+  "read:/sys/class/dmi/id/bios_date": "05/14/2025",
+  "read:/sys/class/dmi/id/bios_version": "V1.07",
+  "read:/sys/class/dmi/id/board_name": "NuMB-7000",
+  "read:/sys/class/dmi/id/product_name": "Nuvo-7000",
+  "read:/sys/class/dmi/id/sys_vendor": "Neousys Technology",
+  "read:/sys/class/net/eno1/address": "aa:bb:cc:00:00:01",
+  "read:/sys/class/net/eno1/carrier": "1",
+  "read:/sys/class/net/eno1/device/current_link_speed": null,
+  "read:/sys/class/net/eno1/device/current_link_width": null,
+  "read:/sys/class/net/eno1/device/device": "0x15fb",
+  "read:/sys/class/net/eno1/device/max_link_speed": null,
+  "read:/sys/class/net/eno1/device/max_link_width": null,
+  "read:/sys/class/net/eno1/device/numa_node": "0",
+  "read:/sys/class/net/eno1/device/revision": "0x11",
+  "read:/sys/class/net/eno1/device/subsystem_device": "0x0000",
+  "read:/sys/class/net/eno1/device/subsystem_vendor": "0x8086",
+  "read:/sys/class/net/eno1/device/vendor": "0x8086",
+  "read:/sys/class/net/eno1/duplex": "full",
+  "read:/sys/class/net/eno1/ifindex": "5",
+  "read:/sys/class/net/eno1/mtu": "1500",
+  "read:/sys/class/net/eno1/operstate": "up",
+  "read:/sys/class/net/eno1/speed": "1000",
+  "read:/sys/class/net/enp1s0/address": "aa:bb:cc:00:01:00",
+  "read:/sys/class/net/enp1s0/carrier": "1",
+  "read:/sys/class/net/enp1s0/device/current_link_speed": "5.0 GT/s PCIe",
+  "read:/sys/class/net/enp1s0/device/current_link_width": "1",
+  "read:/sys/class/net/enp1s0/device/device": "0x125b",
+  "read:/sys/class/net/enp1s0/device/max_link_speed": "5.0 GT/s PCIe",
+  "read:/sys/class/net/enp1s0/device/max_link_width": "1",
+  "read:/sys/class/net/enp1s0/device/numa_node": "0",
+  "read:/sys/class/net/enp1s0/device/revision": "0x04",
+  "read:/sys/class/net/enp1s0/device/subsystem_device": "0x0000",
+  "read:/sys/class/net/enp1s0/device/subsystem_vendor": "0x8086",
+  "read:/sys/class/net/enp1s0/device/vendor": "0x8086",
+  "read:/sys/class/net/enp1s0/duplex": "full",
+  "read:/sys/class/net/enp1s0/ifindex": "2",
+  "read:/sys/class/net/enp1s0/mtu": "1500",
+  "read:/sys/class/net/enp1s0/operstate": "up",
+  "read:/sys/class/net/enp1s0/speed": "1000",
+  "read:/sys/class/net/enp2s0/address": "aa:bb:cc:00:02:00",
+  "read:/sys/class/net/enp2s0/carrier": "0",
+  "read:/sys/class/net/enp2s0/device/current_link_speed": "5.0 GT/s PCIe",
+  "read:/sys/class/net/enp2s0/device/current_link_width": "1",
+  "read:/sys/class/net/enp2s0/device/device": "0x125c",
+  "read:/sys/class/net/enp2s0/device/max_link_speed": "5.0 GT/s PCIe",
+  "read:/sys/class/net/enp2s0/device/max_link_width": "1",
+  "read:/sys/class/net/enp2s0/device/numa_node": "0",
+  "read:/sys/class/net/enp2s0/device/revision": "0x04",
+  "read:/sys/class/net/enp2s0/device/subsystem_device": "0x0000",
+  "read:/sys/class/net/enp2s0/device/subsystem_vendor": "0x8086",
+  "read:/sys/class/net/enp2s0/device/vendor": "0x8086",
+  "read:/sys/class/net/enp2s0/duplex": "unknown",
+  "read:/sys/class/net/enp2s0/ifindex": "3",
+  "read:/sys/class/net/enp2s0/mtu": "1500",
+  "read:/sys/class/net/enp2s0/operstate": "down",
+  "read:/sys/class/net/enp2s0/speed": "-1",
+  "read:/sys/class/net/enp3s0/address": "aa:bb:cc:00:03:00",
+  "read:/sys/class/net/enp3s0/carrier": "1",
+  "read:/sys/class/net/enp3s0/device/current_link_speed": "2.5 GT/s PCIe",
+  "read:/sys/class/net/enp3s0/device/current_link_width": "1",
+  "read:/sys/class/net/enp3s0/device/device": "0x1533",
+  "read:/sys/class/net/enp3s0/device/max_link_speed": "2.5 GT/s PCIe",
+  "read:/sys/class/net/enp3s0/device/max_link_width": "4",
+  "read:/sys/class/net/enp3s0/device/numa_node": "0",
+  "read:/sys/class/net/enp3s0/device/revision": "0x03",
+  "read:/sys/class/net/enp3s0/device/subsystem_device": "0x0000",
+  "read:/sys/class/net/enp3s0/device/subsystem_vendor": "0x8086",
+  "read:/sys/class/net/enp3s0/device/vendor": "0x8086",
+  "read:/sys/class/net/enp3s0/duplex": "full",
+  "read:/sys/class/net/enp3s0/ifindex": "4",
+  "read:/sys/class/net/enp3s0/mtu": "1500",
+  "read:/sys/class/net/enp3s0/operstate": "up",
+  "read:/sys/class/net/enp3s0/speed": "1000",
+  "read:/sys/class/ptp/ptp0/clock_name": "igc-ptp",
+  "read:/sys/class/ptp/ptp0/max_adjustment": "62499999",
+  "read:/sys/class/ptp/ptp0/n_external_timestamps": "1",
+  "read:/sys/class/ptp/ptp0/n_periodic_outputs": "2",
+  "read:/sys/class/ptp/ptp0/n_pins": null,
+  "read:/sys/class/ptp/ptp0/n_programmable_pins": "4",
+  "read:/sys/class/ptp/ptp0/pins/SDP0": "1 0",
+  "read:/sys/class/ptp/ptp0/pins/SDP1": "2 0",
+  "read:/sys/class/ptp/ptp0/pins/SDP2": "0 0",
+  "read:/sys/class/ptp/ptp0/pins/SDP3": "0 0",
+  "read:/sys/class/ptp/ptp1/clock_name": "igc-ptp",
+  "read:/sys/class/ptp/ptp1/max_adjustment": "62499999",
+  "read:/sys/class/ptp/ptp1/n_external_timestamps": "1",
+  "read:/sys/class/ptp/ptp1/n_periodic_outputs": "2",
+  "read:/sys/class/ptp/ptp1/n_pins": null,
+  "read:/sys/class/ptp/ptp1/n_programmable_pins": "4",
+  "read:/sys/class/ptp/ptp1/pins/SDP0": "0 0",
+  "read:/sys/class/ptp/ptp1/pins/SDP1": "0 0",
+  "read:/sys/class/ptp/ptp1/pins/SDP2": "0 0",
+  "read:/sys/class/ptp/ptp1/pins/SDP3": "0 0",
+  "read:/sys/class/ptp/ptp2/clock_name": "igb-ptp",
+  "read:/sys/class/ptp/ptp2/max_adjustment": "62499999",
+  "read:/sys/class/ptp/ptp2/n_external_timestamps": "1",
+  "read:/sys/class/ptp/ptp2/n_periodic_outputs": "1",
+  "read:/sys/class/ptp/ptp2/n_pins": null,
+  "read:/sys/class/ptp/ptp2/n_programmable_pins": "2",
+  "read:/sys/class/ptp/ptp2/pins/SDP0": "0 0",
+  "read:/sys/class/ptp/ptp2/pins/SDP1": "0 0",
+  "read:/sys/devices/system/node/node0/cpulist": "0-7",
+  "read:/usr/share/misc/pci.ids": "# a trimmed copy, enough for the fixture\n8086  Intel Corporation\n\t1533  I210 Gigabit Network Connection\n\t15fb  Ethernet Connection (7) I219-LM\n# 125b and 125c are absent on purpose: a shipped pci.ids is often\n# older than the silicon, and nicscope must fall back to its table.\n\nC 00  Unclassified device",
+  "real:/dev/ptp_grandmaster": "/dev/ptp0",
+  "real:/sys/bus/pci/devices/0000:00:1f.6": "/sys/devices/pci0000:00/0000:00:1f.6",
+  "real:/sys/bus/pci/devices/0000:01:00.0": "/sys/devices/pci0000:00/0000:00:1c.4/0000:01:00.0",
+  "real:/sys/bus/pci/devices/0000:02:00.0": "/sys/devices/pci0000:00/0000:00:1c.5/0000:02:00.0",
+  "real:/sys/bus/pci/devices/0000:04:00.0": "/sys/devices/pci0000:00/0000:00:1d.0/0000:03:00.0/0000:04:00.0",
+  "real:/sys/class/net/eno1/device": "/sys/devices/pci0000:00/0000:00:1f.6",
+  "real:/sys/class/net/eno1/device/driver": "/sys/bus/pci/drivers/e1000e",
+  "real:/sys/class/net/enp1s0/device": "/sys/devices/pci0000:00/0000:00:1c.4/0000:01:00.0",
+  "real:/sys/class/net/enp1s0/device/driver": "/sys/bus/pci/drivers/igc",
+  "real:/sys/class/net/enp2s0/device": "/sys/devices/pci0000:00/0000:00:1c.5/0000:02:00.0",
+  "real:/sys/class/net/enp2s0/device/driver": "/sys/bus/pci/drivers/igc",
+  "real:/sys/class/net/enp3s0/device": "/sys/devices/pci0000:00/0000:00:1d.0/0000:03:00.0/0000:04:00.0",
+  "real:/sys/class/net/enp3s0/device/driver": "/sys/bus/pci/drivers/igb"
+ },
+ "meta": {
+  "host": "meas01",
+  "note": "Generated by tests/fixtures/build_synthetic.py. No such machine exists.",
+  "privileged": true,
+  "synthetic": true
+ },
+ "schema": "nicscope-capture/1"
+}

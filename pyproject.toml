@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nicscope"
+version = "0.1.0"
+description = "Inspect network interfaces on a Linux measurement host: identity, timing capability, PCIe topology."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Lorenz Schmid", email = "schmidlorenz@gmx.ch" }]
+keywords = ["ptp", "linuxptp", "ethtool", "phc", "ptm", "tsn", "tui", "networking"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console :: Curses",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Topic :: System :: Networking :: Monitoring",
+]
+
+# The collectors, the readiness rules and every export format use the standard
+# library only. A field machine needs no wheel to run `nicscope --json`.
+dependencies = []
+
+[project.optional-dependencies]
+tui = ["textual>=0.80"]
+dev = ["textual>=0.80", "pytest>=7.4", "pytest-asyncio>=0.23", "ruff>=0.5"]
+
+[project.scripts]
+nicscope = "nicscope.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/SchmidL/nicscope"
+Issues = "https://github.com/SchmidL/nicscope/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nicscope"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]

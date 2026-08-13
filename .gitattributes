@@ -1,0 +1,8 @@
+# nicscope runs on Linux. Every file in the repository keeps LF endings,
+# whatever the working copy sits on. Without this, a checkout on a Windows
+# drive rewrites the sources to CRLF.
+* text=auto eol=lf
+
+# Do not touch the recordings. A capture is a byte-for-byte copy of what a
+# machine printed, and the tests compare it against a regenerated file.
+tests/fixtures/*.capture.json -text

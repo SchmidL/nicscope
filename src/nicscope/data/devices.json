@@ -1,0 +1,55 @@
+{
+  "_comment": [
+    "Device advisories and the known-good firmware list, keyed by vendor:device.",
+    "",
+    "This table ships almost empty ON PURPOSE. A firmware string that nobody has",
+    "verified on your own hardware is `unknown`, and nicscope reports `unknown` as",
+    "a warning, never as a pass. Fill `known_good_firmware` from your own campaign",
+    "notes, one entry for each version you measured and trust. That is the only",
+    "list that means anything for your measurement.",
+    "",
+    "`revisions` keys on the PCI revision register, which is the silicon stepping.",
+    "It is read from /sys/bus/pci/devices/<bdf>/revision. A revision rule wins over",
+    "the device default.",
+    "",
+    "Fields: verdict (good | old), note, known_good_firmware (list of the exact",
+    "strings that `ethtool -i` prints for firmware-version)."
+  ],
+
+  "8086:15f2": {
+    "name": "Intel I225-LM",
+    "known_good_firmware": [],
+    "note": "Check the stepping. Early I225 silicon had a documented 2.5 Gbit/s link-stability problem that the later stepping addresses.",
+    "revisions": [
+      {
+        "revision": "0x01",
+        "verdict": "old",
+        "note": "I225 A2 stepping. Known 2.5 Gbit/s link-stability problems. Prefer a B3 stepping or an I226 for a timing port."
+      },
+      {
+        "revision": "0x02",
+        "verdict": "old",
+        "note": "I225 A3 stepping. Known 2.5 Gbit/s link-stability problems. Prefer a B3 stepping or an I226 for a timing port."
+      },
+      {
+        "revision": "0x03",
+        "verdict": "good",
+        "note": "I225 B3 stepping. The 2.5 Gbit/s problem of the earlier steppings is addressed."
+      }
+    ]
+  },
+  "8086:15f3": {
+    "name": "Intel I225-V",
+    "known_good_firmware": [],
+    "revisions": [
+      { "revision": "0x01", "verdict": "old", "note": "I225 A2 stepping. See the I225-LM note." },
+      { "revision": "0x02", "verdict": "old", "note": "I225 A3 stepping. See the I225-LM note." },
+      { "revision": "0x03", "verdict": "good", "note": "I225 B3 stepping." }
+    ]
+  },
+  "8086:125b": { "name": "Intel I226-LM", "known_good_firmware": [] },
+  "8086:125c": { "name": "Intel I226-V", "known_good_firmware": [] },
+  "8086:125d": { "name": "Intel I226-IT", "known_good_firmware": [] },
+  "8086:1533": { "name": "Intel I210", "known_good_firmware": [] },
+  "8086:1521": { "name": "Intel I350", "known_good_firmware": [] }
+}
