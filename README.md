@@ -22,7 +22,7 @@ measurement system.
 ├────────────────────────────────────────────────────────────────────────┤
 │ IFACE     PCI       DRIVER  SPEED  LINK  PHC  PTM  LABEL         READY │
 │ eno1      00:1f.6   e1000e  1000   up    none no   Onboard LAN 1  FAIL │
-│ enp1s0    01:00.0   igc     1000   up    0    on   Onboard LAN 2  pass │
+│ enp1s0    01:00.0   igc     1000   up    0    on   Onboard LAN 2  unkn │
 │ enp2s0    02:00.0   igc     n/a    down  1    off  -              warn │
 │ enp3s0    04:00.0   igb     1000   up    2    no   -              warn │
 ├────────────────────────────────────────────────────────────────────────┤
@@ -32,6 +32,11 @@ measurement system.
 │   PTM              requester yes   enabled yes   chain yes             │
 └────────────────────────────────────────────────────────────────────────┘
 ```
+
+`enp1s0` passes every functional check there. Its verdict stays `unkn` because
+its firmware version is not in your known-good table yet, and nicscope will not
+call an unverified firmware a pass. Add the version once you trust it, and the
+port turns green. That rule runs through the whole tool.
 
 ## Install
 
