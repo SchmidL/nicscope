@@ -61,7 +61,7 @@ pip install --user .           # headless only, zero dependencies
 ```sh
 nicscope                        # start the interface
 nicscope --check                # the readiness table, and an exit code
-nicscope --json > munin.json    # the canonical document
+nicscope --json > system.json   # the canonical document
 nicscope --format md -o report.md
 nicscope --diff last-campaign.json
 ```
@@ -193,11 +193,11 @@ against that file with no hardware present.
 
 ```sh
 # on the measurement host
-sudo nicscope --record munin.capture.json --json > munin.json
+sudo nicscope --record config.capture.json --json > system.json
 
 # anywhere else, days later
-nicscope --replay munin.capture.json --check
-nicscope --replay munin.capture.json --format md -o report.md
+nicscope --replay system.capture.json --check
+nicscope --replay system.capture.json --format md -o report.md
 ```
 
 This is how to send a bug report, how to look at a field machine from a desk,
