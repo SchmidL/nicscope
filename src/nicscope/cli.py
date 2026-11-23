@@ -14,6 +14,8 @@ from __future__ import annotations
 
 import argparse
 import os
+import shutil
+import subprocess
 import sys
 
 from . import __version__, export
@@ -81,7 +83,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     privilege = parser.add_argument_group("privilege")
     privilege.add_argument(
-        "--sudo", action="store_true", help="run the root-only commands through `sudo -n`"
+        "--sudo", action="store_true", help="ask for the sudo password once, then run the root-only commands through sudo"
     )
     privilege.add_argument(
         "--no-root",
@@ -129,6 +131,9 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("--record and --replay cannot be used together")
 
     stored = Labels.load()
+
+    if args.sudo and not args.no_root and not args.replay:
+        _prime_sudo()
 
     ctx = make_context(
         record=args.record,
@@ -178,6 +183,30 @@ def main(argv: list[str] | None = None) -> int:
 
 
 # ------------------------------------------------------------- actions ----
+def _prime_sudo() -> None:
+    """Ask for the sudo password once, before any work starts.
+
+    The root-only commands run through `sudo -n`, which never prompts. It only
+    works when sudo already holds a cached credential. So ask for the password
+    here, on the real terminal, before the interface takes the screen.
+    """
+    if os.geteuid() == 0 or shutil.which("sudo") is None:
+        return
+    quiet = {"stdout": subprocess.DEVNULL, "stderr": subprocess.DEVNULL}
+    if subprocess.run(["sudo", "-n", "true"], check=False, **quiet).returncode == 0:
+        return  # cached credential or NOPASSWD: nothing to ask
+    if not sys.stdin.isatty():
+        print(
+            "--sudo: no terminal to ask for the password, and sudo has no cached "
+            "credential. Run `sudo -v` first. Root-only fields stay unknown.",
+            file=sys.stderr,
+        )
+        return
+    prompt = "[nicscope] sudo password for %u: "
+    if subprocess.run(["sudo", "-v", "-p", prompt], check=False).returncode != 0:
+        print("--sudo: authentication failed. Root-only fields stay unknown.", file=sys.stderr)
+
+
 def _wants_terminal(args) -> bool:
     if args.tui:
         return True
