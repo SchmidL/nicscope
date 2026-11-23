@@ -90,8 +90,19 @@ Most of the tool needs no root:
 | ioctl on `/dev/ptp<N>` (the cross-timestamp probe) | usually yes |
 
 An unprivileged run does not guess. It marks each root-only field as
-`n/a (needs root)` and shows the reason. Run under `sudo`, or pass `--sudo` to
-call only the root-only commands through `sudo -n`.
+`n/a (needs root)` and shows the reason. Run under `sudo`, or pass `--sudo`.
+With `--sudo`, nicscope asks for your password once at start, then calls only
+the root-only commands through `sudo -n`.
+
+`sudo nicscope` can fail with `command not found`. sudo resets `PATH` to its
+`secure_path`, which does not contain `~/.local/bin`. Give the full path:
+
+```sh
+sudo "$(command -v nicscope)"
+```
+
+This works for a `pipx` install. A `pip install --user` install puts the package
+in your user site, which root does not see. Use `pipx`, or use `--sudo`.
 
 ## What it checks
 
