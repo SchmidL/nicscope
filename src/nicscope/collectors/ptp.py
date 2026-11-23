@@ -92,7 +92,13 @@ def _ioctl(ctx: Context, iface: Interface) -> None:
     if not device:
         return
 
-    result = ctx.fs.cached("ioctl", device, lambda: ptp_ioctl.probe(device))
+    def produce() -> dict:
+        found = ptp_ioctl.probe(device)
+        if found.get("error") == "needs root" and ctx.runner.allow_sudo and not ctx.privileged:
+            found = ptp_ioctl.probe_via_sudo(device, timeout=ctx.runner.timeout)
+        return found
+
+    result = ctx.fs.cached("ioctl", device, produce)
     if not isinstance(result, dict):
         return
 

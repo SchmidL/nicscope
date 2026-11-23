@@ -17,14 +17,20 @@ ioctl                        nr    what it answers
 ``PTP_PIN_SETFUNC`` is never called. nicscope inspects. It does not configure.
 
 The character device is owned by root on most systems. Without permission the
-probe returns an error string and the caller marks the field as unknown.
+probe returns an error string and the caller marks the field as unknown. With
+``--sudo``, :func:`probe_via_sudo` runs this file as a script through
+``sudo -n`` and reads the result back as JSON.
 """
 
 from __future__ import annotations
 
 import fcntl
+import json
 import os
+import shutil
 import struct
+import subprocess
+import sys
 from typing import Any
 
 # asm-generic/ioctl.h
@@ -124,6 +130,31 @@ def probe(device: str, *, read_pins: bool = True) -> dict[str, Any]:
     return out
 
 
+def probe_via_sudo(device: str, *, timeout: float = 10.0) -> dict[str, Any]:
+    """Run :func:`probe` as root, through ``sudo -n``.
+
+    The probe is an ioctl in this process, so ``sudo`` on a command cannot
+    reach it. Instead, run this file as a script under root. The file uses the
+    standard library only, so it runs by path with ``python -I``, wherever the
+    package is installed. That also avoids the ``secure_path`` of sudo.
+    """
+    out: dict[str, Any] = {"device": device, "error": "needs root"}
+    if shutil.which("sudo") is None:
+        return out
+    argv = ["sudo", "-n", sys.executable, "-I", os.path.abspath(__file__), device]
+    try:
+        proc = subprocess.run(argv, capture_output=True, text=True, timeout=timeout, check=False)
+    except (OSError, subprocess.TimeoutExpired):
+        return out
+    if proc.returncode != 0:
+        return out
+    try:
+        result = json.loads(proc.stdout)
+    except ValueError:
+        return out
+    return result if isinstance(result, dict) else out
+
+
 def _get_caps(fd: int) -> dict[str, int] | None:
     buffer = bytearray(SIZEOF_CLOCK_CAPS)
     try:
@@ -174,3 +205,10 @@ def _try_precise(fd: int) -> int | None:
     if dev_sec == 0 and dev_nsec == 0:
         return None
     return (dev_sec - sys_sec) * 1_000_000_000 + (dev_nsec - sys_nsec)
+
+
+if __name__ == "__main__":
+    # Used by probe_via_sudo. One device path in, one JSON document out.
+    if len(sys.argv) != 2 or not sys.argv[1].startswith("/dev/ptp"):
+        sys.exit("usage: ptp_ioctl.py /dev/ptp<N>")
+    json.dump(probe(sys.argv[1]), sys.stdout)

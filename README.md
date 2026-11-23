@@ -92,7 +92,8 @@ Most of the tool needs no root:
 An unprivileged run does not guess. It marks each root-only field as
 `n/a (needs root)` and shows the reason. Run under `sudo`, or pass `--sudo`.
 With `--sudo`, nicscope asks for your password once at start, then calls only
-the root-only commands through `sudo -n`.
+the root-only commands through `sudo -n`. The PHC ioctl probe runs in a small
+helper under `sudo -n` too.
 
 `sudo nicscope` can fail with `command not found`. sudo resets `PATH` to its
 `secure_path`, which does not contain `~/.local/bin`. Give the full path:
